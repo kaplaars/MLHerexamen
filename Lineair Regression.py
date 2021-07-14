@@ -54,7 +54,7 @@ linear_model = tf.keras.Sequential([
     layers.Dense(units=1)
 ])
 linear_model.predict(train_features[:6])
-linear_model.layers[1].kernel
+print(linear_model.layers[1].kernel)
 linear_model.compile(
     optimizer=tf.optimizers.Adam(learning_rate=0.01),
     loss='mean_absolute_error')
@@ -77,8 +77,7 @@ def plot_loss(history):
 plot_loss(history)
 
 test_results = {}
-test_results['linear_model'] = linear_model.evaluate(
-    test_features, test_labels, verbose=2)
+test_results['linear_model'] = linear_model.evaluate(test_features, test_labels, verbose=2)
 print(pd.DataFrame(test_results, index=['Mean absolute error [Survival]']).T)
 test_predictions = linear_model.predict(test_features).flatten()
 
@@ -95,6 +94,6 @@ plt.show()
 
 error = test_predictions - test_labels
 plt.hist(error, bins=50)
-plt.xlabel('Prediction Error [MPG]')
+plt.xlabel('Prediction Error [Survival]')
 _ = plt.ylabel('Count')
 plt.show()
