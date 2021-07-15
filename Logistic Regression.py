@@ -61,7 +61,7 @@ def build_and_compile_model(norm):
       layers.Dense(1)
   ])
 
-  model.compile(loss='mean_absolute_error', optimizer=tf.keras.optimizers.Adam(0.0001))
+  model.compile(loss='mean_absolute_error', optimizer=tf.keras.optimizers.Adam(0.00001))
   return model
 dnn_model = build_and_compile_model(normalizer)
 print(dnn_model.summary())
@@ -69,7 +69,7 @@ print(dnn_model.summary())
 history = dnn_model.fit(
     train_features, train_labels,
     validation_split=0.2,
-    verbose=2, epochs=1000)
+    verbose=2, epochs=5000)
 
 def plot_loss(history):
   plt.plot(history.history['loss'], label='loss')
@@ -98,7 +98,7 @@ _ = plt.plot(lims, lims)
 plt.show()
 
 error = test_predictions - test_labels
-plt.hist(error, bins=50)
+plt.hist(error, bins=50, label="test")
 plt.xlabel('Prediction Error [Survival]')
 _ = plt.ylabel('Count')
 plt.show()
