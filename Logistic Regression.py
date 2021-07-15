@@ -52,8 +52,12 @@ with np.printoptions(precision=2, suppress=True):
 def build_and_compile_model(norm):
   model = keras.Sequential([
       norm,
-      layers.Dense(64, activation='relu'),
-      layers.Dense(64, activation='relu'),
+      layers.Dense(128, activation='relu'),
+      layers.Dense(128, activation='relu'),
+      layers.Dense(256, activation='relu'),
+      layers.Dense(256, activation='relu'),
+      layers.Dense(128, activation='relu'),
+      layers.Dense(128, activation='relu'),
       layers.Dense(1)
   ])
 
